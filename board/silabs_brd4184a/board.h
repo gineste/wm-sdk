@@ -23,13 +23,13 @@
 #define BOARD_USART_FORCE_BAUDRATE      115200
 
 // List of GPIO ports and pins for the LEDs on the board: yellow LED
-#define BOARD_LED_PIN_LIST              {{GPIO_PORTB, 0}}
+#define BOARD_LED_PIN_LIST              {{GPIO_PORTB, 1}} // org {{GPIO_PORTB, 0}}
 
 // Active high polarity for LEDs
 #define BOARD_LED_ACTIVE_LOW            false
 
 // List of ext. ints, GPIO ports and pins for buttons on the board: BTN0
-#define BOARD_BUTTON_PIN_LIST           {{0, GPIO_PORTB, 1}}
+#define BOARD_BUTTON_PIN_LIST           {{0, GPIO_PORTB, 0}} // org {{0, GPIO_PORTB, 1}}
 
 // Active low polarity for buttons
 #define BOARD_BUTTON_ACTIVE_LOW         true

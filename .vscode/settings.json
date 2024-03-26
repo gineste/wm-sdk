@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "board.h": "c",
+        "lis2dh12_wrapper.h": "c",
+        "hal_api.h": "c",
+        "debug_log.h": "c",
+        "node_configuration.h": "c",
+        "app_config.h": "c",
+        "led.h": "c",
+        "tlv.h": "c",
+        "i2c.h": "c",
+        "util.h": "c",
+        "sensormanager.h": "c",
+        "local_provisioning.h": "c",
+        "dualmcu_lib.h": "c"
+    }
+}

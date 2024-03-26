@@ -27,7 +27,7 @@
 
 #define DEBUG_LOG_MODULE_NAME "EVAL_APP"
 /** To activate logs, configure the following line with "LVL_INFO". */
-#define DEBUG_LOG_MAX_LEVEL LVL_NOLOG
+#define DEBUG_LOG_MAX_LEVEL LVL_DEBUG //LVL_NOLOG
 
 #include "debug_log.h"
 

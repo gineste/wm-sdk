@@ -1,5 +1,5 @@
 # Boards compatible with this app 
-TARGET_BOARDS := pca10056 pca10100 tbsense2 pca10040 ruuvitag pan1780 
+TARGET_BOARDS := nrf52_bu_exo pca10056 pca10059 pca10100 tbsense2 pca10040 ruuvitag pan1780 
 # Boards compatible with this app
 #
 # Network default settings configuration
@@ -7,8 +7,8 @@ TARGET_BOARDS := pca10056 pca10100 tbsense2 pca10040 ruuvitag pan1780
 
 # If this section is removed, node has to be configured in
 # a different way
-default_network_address ?= 0xD8D42B
-default_network_channel ?= 9
+default_network_address ?= 0x00CAFE
+default_network_channel ?= 1
 
 # !HIGHLY RECOMMENDED! : To enable security keys please un-comment the lines below and fill with a
 #                        randomly generated authentication & encryption keys (exactly 16 bytes)

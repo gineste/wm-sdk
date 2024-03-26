@@ -133,4 +133,50 @@ bool Util_inBetween(const uint32_t a, const uint32_t b, const uint32_t c);
  */
 uint8_t Util_bitCountU8(uint8_t value);
 
+
+// These are macro replacement redirection forumulas to do the correct operation
+#define SA_MEMBERNAME(line) align ## line
+#define SA_BASE(prev_type, size, line) \
+    uint8_t SA_MEMBERNAME(line) \
+    [sizeof(prev_type)%size ? size-(sizeof(prev_type)%size) : 0]
+
+#define STRUCT_ALIGN_4(prev_type) SA_BASE(prev_type, 4, __LINE__)
+    //uint8_t align ## __LINE__ [sizeof(prev_type)%4 ? 4-(sizeof(prev_type)%4) : 0]
+#define STRUCT_ALIGN_2(prev_type) SA_BASE(prev_type, 2, __LINE__)
+    // uint8_t align ## __LINE__ [sizeof(prev_type)%2 ? 1 : 0]
+
+#define BIT_MASK(val,mask,shift)    ((((uint32_t)val) & ((uint32_t)mask)) >> ((uint32_t)shift))
+
+/** The higher 8 bits of a upper 16 bits of a 32 bit value */
+#define XMSB_32B_TO_8B(x)   ((uint8_t)((((uint32_t)x) & 0xFF000000) >> 24u))
+/** The lower 8 bits of a upper 16 bits of a 32 bit value */
+#define MSB_32B_TO_8B(x)    ((uint8_t)((((uint32_t)x) & 0x00FF0000) >> 16u))
+/** The higher 8 bits of a lower 16 bits of a 32 bit value */
+#define LSB_32B_TO_8B(x)    ((uint8_t)((((uint32_t)x) & 0x0000FF00) >> 8u))
+/** The lowest 8 bits of a 32 bit value */
+#define XLSB_32B_TO_8B(x)   ((uint8_t)(((uint32_t)x) & 0x000000FF))
+
+/** The lower 16 bits of a 32 bit value */
+#define MSB_32B_TO_16B(x)    ((uint16_t)((((uint32_t)x) & 0xFFFF0000) >> 16u))
+/** The higher 16 bits of a 32 bit value */
+#define LSB_32B_TO_16B(x)    ((uint16_t)(((uint32_t)x) & 0x0000FFFF))
+
+/** The upper 8 bits of a 16 bit value */
+#define MSB_16B_TO_8B(x)    ((uint8_t)((((uint16_t)x) & 0xFF00) >> 8u))
+/** The lower 8 bits (of a 16 bit value) */
+#define LSB_16B_TO_8B(x)    ((uint8_t)(((uint16_t)x) & 0x00FF))
+
+/** The upper 4 bits of a 8 bit value */
+#define MSB_8B(x)    ((uint8_t)(((uint8_t)x) & 0xF0))
+/** The lower 4 bits (of a 8 bit value) */
+#define LSB_8B(x)    ((uint8_t)(((uint8_t)x) & 0x0F))
+
+/** Assembly two 8 bits into 16 bit value */
+#define U8_TO_U16(msb,lsb)             ((uint16_t) ((((uint16_t)msb)<<8u) + ((uint16_t)lsb)) )
+/** Assembly four 8 bits into 32 bit value */
+#define U8_TO_U32(xmsb,msb,lsb,xlsb)   ((uint32_t) ((((uint32_t)xmsb)<<24u) + (((uint32_t)msb)<<16u) + \
+                                                    (((uint32_t)lsb) <<8u)  +  ((uint32_t)xlsb)) )
+/** Assembly two 16 bits into 32 bit value */
+#define U16_TO_U32(msb,lsb)            ((uint32_t) ((((uint32_t)msb)<<16u) + ((uint32_t)lsb)) )
+
 #endif // #ifndef __UTIL_H__

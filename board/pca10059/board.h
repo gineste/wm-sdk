@@ -79,7 +79,7 @@ P1.13   45      gpio           1.13           (low freq)
 P1.14   46      gpio           -              (low freq)
 P1.15   47      gpio           1.15           (low freq)
 */
-
+#define BOARD_UART_IRQ_PIN              2
 // Serial port pins
 #define BOARD_USART_TX_PIN              29
 #define BOARD_USART_RX_PIN              31
@@ -87,16 +87,16 @@ P1.15   47      gpio           1.15           (low freq)
 #define BOARD_USART_RTS_PIN             5  /* For USE_USART_HW_FLOW_CONTROL */
 
 // Pwm output for pwm_driver app
-#define BOARD_PWM_OUTPUT_GPIO           4
+#define BOARD_PWM_OUTPUT_GPIO           1
 
 // List of GPIO pins for the LEDs on the board: LD1, LD2 R, G, B
-#define BOARD_LED_PIN_LIST              {6, 8, 41, 12}
+#define BOARD_LED_PIN_LIST              {6, 8, 41, 12 } //6,
 
 // Active low polarity for LEDs
 #define BOARD_LED_ACTIVE_LOW            true
 
 // List of GPIO pins for buttons on the board: SW1
-//#define BOARD_BUTTON_PIN_LIST           {38}
+#define BOARD_BUTTON_PIN_LIST           {38, 42}
 
 // Active low polarity for buttons
 #define BOARD_BUTTON_ACTIVE_LOW         true

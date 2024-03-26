@@ -14,7 +14,7 @@ UART_USE_USB=no
 endif
 
 # Define default baudrate and hardware flow control settings
-uart_br ?= 125000
+uart_br ?= 115200
 uart_fc ?= false
 
 CFLAGS += -DUART_BAUDRATE=$(uart_br)

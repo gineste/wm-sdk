@@ -54,7 +54,7 @@ MSG_ID_INVALID_UNSUPPORTED_MSG = -1
 # "Periodic message" expected byte length.
 EXPECTED_LENGTH_PERIODIC_MSG = 13
 # "Button event" message expected byte length.
-EXPECTED_LENGTH_BUTTON_EVENT_MSG = 3
+EXPECTED_LENGTH_BUTTON_EVENT_MSG = 5
 # "Echo command response" message expected byte length.
 EXPECTED_LENGTH_ECHO_RESPONSE_MSG = 5
 # "LED get state response" message expected byte length.
@@ -85,7 +85,7 @@ MSG_SUPPORTED_LIST = [MSG_ID_PERIODIC_MSG,
 MSG_PAYLOAD_ENDIANNESS = "little"
 
 # Endpoint where data coming from node running the evaluation application are expected.
-UPLINK_PACKET_EVAL_APP_ENDPOINT = 1
+UPLINK_PACKET_EVAL_APP_ENDPOINT = 11
 
 """
 Evaluation application message set handling class & functions.
@@ -131,7 +131,7 @@ class RxMsg:
         """ Parse Evaluation app <button event message>. """
         # Fill fields list with new payload data
         self.msg_fields.append(list(unpack('<B', self.raw_data[1:2])).pop())  # button ID
-        self.msg_fields.append(list(unpack('<B', self.raw_data[2:])).pop())  # button state
+        self.msg_fields.append(list(unpack('<B', self.raw_data[2:3])).pop())  # button state
 
         return True
 
@@ -235,6 +235,8 @@ class RxMsg:
         self.msg_fields.clear()
         # Clear message ID attribute
         self.msg_id = None
+
+        print(self.raw_data)
 
         # Check payload data has the right data type before trying to parse anything.
         if type(self.raw_data) is bytes:
@@ -584,10 +586,11 @@ def on_message_event_data_received_callback(data):
 
     # Init and process received message payload.
     msg = RxMsg(data.data_payload)
-    if msg.parse():
-        msg.display(data.gw_id, data.sink_id, data.source_address, (data.rx_time_ms_epoch/1000))
-    else:
-        print("Invalid message received !\n")
+
+    #if msg.parse():
+    msg.display(data.gw_id, data.sink_id, data.source_address, (data.rx_time_ms_epoch/1000))
+    #else:
+    #    print("Invalid message received !\n")
 
 
 def main():

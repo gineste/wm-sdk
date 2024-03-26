@@ -6,8 +6,8 @@ TARGET_BOARDS := silabs_brd4254a efr32_template pca10059 silabs_brd4180b pca1005
 
 # If this section is removed, node has to be configured in
 # a different way
-default_network_address ?= 0xA1B2C3
-default_network_channel ?= 2
+default_network_address ?= 0x00cafe
+default_network_channel ?= 1
 # !HIGHLY RECOMMENDED! : To enable security keys please un-comment the lines below and fill with a
 #                        randomly generated authentication & encryption keys (exactly 16 bytes)
 #default_network_cipher_key ?= 0x??,0x??,0x??,0x??,0x??,0x??,0x??,0x??,0x??,0x??,0x??,0x??,0x??,0x??,0x??,0x??
