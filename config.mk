@@ -22,5 +22,5 @@ arm_toolchain=
 # Python2 is end of life and support will be removed in the future.
 # Leaving value empty uses the shebang value of the script, which is #!/usr/bin/env python3
 # and fallback to "python" cmd
-python_interpreter=
+python_interpreter=/usr/bin/env python3
 

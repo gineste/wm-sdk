@@ -12,6 +12,7 @@
         "util.h": "c",
         "sensormanager.h": "c",
         "local_provisioning.h": "c",
-        "dualmcu_lib.h": "c"
+        "dualmcu_lib.h": "c",
+        "app_scheduler.h": "c"
     }
 }

@@ -22,6 +22,46 @@
 
 #include "debug_log.h"
 
+#define AIN0_A5_SCL     2
+#define AIN1_A7         3          
+#define AIN2_A1         4
+
+#define LB              6 
+    
+#define D7_NFC1         9        
+#define D8_NFC2         10 
+
+#define SCK_LEDORANGE   13
+#define SDA1             14
+#define SCL1            15
+#define LG              16
+#define nRESET          18   
+#define INT_APDS        19 
+#define APDS_PWR        20   
+#define D8              21       
+#define VDD_ENV         22            
+#define D7              23
+#define LR              24
+#define PDMDIN          25
+#define PDMCLK          26       
+#define D9              27     
+#define AIN4_A6         28       
+#define AIN5_A3         29        
+#define AIN6_A2         30      
+#define AIN7_A4_SDA     31      
+
+
+#define R_PULLUP        32
+#define MOSI_            33
+#define D10             34
+#define TX_              35
+#define MISO_            40     
+#define RX_              42 
+#define D2              43      
+#define D3              44 
+#define D5              45
+#define D6              46   
+#define D4              47
 /** Period to send data */
 #define DEFAULT_PERIOD_S    10
 #define DEFAULT_PERIOD_MS   (DEFAULT_PERIOD_S*1000)
@@ -130,6 +170,38 @@ void App_init(const app_global_functions_t * functions)
 {
     LOG_INIT();
     LOG(LVL_INFO, "App_init");
+
+    nrf_gpio_cfg_output(SCK_LEDORANGE);
+    nrf_gpio_cfg_output(LG);
+    nrf_gpio_cfg_output(APDS_PWR);
+    nrf_gpio_cfg_output(VDD_ENV);
+    nrf_gpio_cfg_output(LR);
+    nrf_gpio_cfg_output(LB);
+    nrf_gpio_cfg_output(PDMDIN);
+    nrf_gpio_cfg_output(PDMCLK);
+    nrf_gpio_cfg_output(R_PULLUP);
+    nrf_gpio_cfg_output(SDA1);
+    nrf_gpio_cfg_output(SCL1);
+
+
+    nrf_gpio_pin_clear(SDA1);
+    nrf_gpio_pin_clear(SCL1);
+
+
+    nrf_gpio_pin_clear(SCK_LEDORANGE);
+    nrf_gpio_pin_clear(LG);
+    nrf_gpio_pin_clear(APDS_PWR);
+    nrf_gpio_pin_clear(VDD_ENV);
+    nrf_gpio_pin_clear(LR);
+    nrf_gpio_pin_clear(PDMDIN);
+    nrf_gpio_pin_clear(PDMCLK);
+    nrf_gpio_pin_clear(R_PULLUP);
+
+    nrf_gpio_pin_set(LB);
+    nrf_gpio_pin_set(LG);
+    nrf_gpio_pin_set(LR);
+
+    
     // Basic configuration of the node with a unique node address
     if (configureNodeFromBuildParameters() != APP_RES_OK)
     {
